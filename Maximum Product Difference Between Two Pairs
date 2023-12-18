@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+        int largest = 0, secondLargest = 0;
+        int smallest = INT_MAX, secondSmallest = INT_MAX;
+        for(int num : nums){
+            if(smallest > num){
+                secondSmallest = smallest;
+                smallest = num;
+            } else if(secondSmallest > num){
+                secondSmallest = num;
+            }
+
+            if(num > largest){
+                secondLargest = largest;
+                largest = num;
+            } else if(secondLargest < num){
+                secondLargest = num;
+            }
+        }
+
+        return (largest * secondLargest) - (smallest * secondSmallest);
+    }
+};
